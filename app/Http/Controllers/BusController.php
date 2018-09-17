@@ -15,8 +15,8 @@ class BusController extends Controller
      */
     public function index()
     {
-        // $buses = Bus::all();
-        // return view('home')->withbuses($buses);
+        $buses = Bus::all();
+        return view('buses.index')->withbuses($buses);
     }
 
     /**
@@ -38,9 +38,10 @@ class BusController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, array(
+            'no' => 'required|max:7',
             'name' => 'required|max:255',
             'from'  => 'required', 
-            'depar' => 'required',
+            'depar' => 'date_format:"H:i"|required',
             'to' => 'required',
             'seats' => 'required',
             'featured_img' => 'sometimes|image',
@@ -49,6 +50,7 @@ class BusController extends Controller
         //store in the database
         $bus = new Bus;
 
+        $bus -> no=$request->no;
         $bus -> name=$request->name;
         $bus -> from=$request->from;
         $bus -> depar=$request->depar;
@@ -67,7 +69,7 @@ class BusController extends Controller
 
         $bus->save();
 
-        return redirect() -> route('home');
+        return redirect() -> route('bus.index');
     }
 
     /**
@@ -78,7 +80,8 @@ class BusController extends Controller
      */
     public function show($id)
     {
-        //
+        // $bus = Bus::find($id);
+        // return view('buses.show')->withbus($bus);
     }
 
     /**
@@ -89,7 +92,8 @@ class BusController extends Controller
      */
     public function edit($id)
     {
-        //
+        $bus = Bus::find($id);
+        return view('buses.edit')->withbus($bus);
     }
 
     /**
@@ -101,7 +105,13 @@ class BusController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        
+        //update to the database
+        $bus = Bus::find($id);
+
+        $bus->update($request->all());
+
+        return redirect() -> route('bus.index');
     }
 
     /**
@@ -110,8 +120,10 @@ class BusController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, Bus $bus)
     {
-        //
+        Bus::destroy($bus->id);   
+
+        return redirect() -> route('bus.index');
     }
 }

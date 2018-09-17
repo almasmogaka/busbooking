@@ -1,3 +1,31 @@
+
+body {
+    background-color: rgba(177, 209, 230, 0.952);
+}
 .card {
-    margin: 20px 120px;
+    height: 270px;
+    border: 1px solid red;
+    margin-bottom: 10px;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 14px;   
+}
+.fare {
+    float: right;
+}
+.center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    height: 100%;
+}
+.homenav {
+    margin: 0px;
+    padding: 0px;
+}
+.navt {
+    background-color: aliceblue;
+}
+.btn {
+    padding-right: 5px;
 }

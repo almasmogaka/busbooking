@@ -6,7 +6,7 @@
  
        </p>
  
-       <p>Bus Booking System &copy; Available at any time!</p>
+       <p style="text-align:center; margin-top:20px;">Bus Booking System &copy; Available at any time!</p>
  
      </div>
  

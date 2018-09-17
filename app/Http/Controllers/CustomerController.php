@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Customer;
+use App\Bus;
 
 class CustomerController extends Controller
 {
@@ -23,7 +25,7 @@ class CustomerController extends Controller
      */
     public function create()
     {
-        //
+        
     }
 
     /**
@@ -34,7 +36,23 @@ class CustomerController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, array(
+            'seat' => 'required',
+            'idno' => 'required',
+            'name' => 'required|max:8|min:8',
+            'phone'  => 'required',             
+        ));
+        //store in the database
+        $customer = new Customer;
+
+        $customer -> seat=$request->seat;
+        $customer -> idno=$request->idno;        
+        $customer -> name=$request->name;
+        $customer -> phone=$request->phone;        
+
+        $customer->save();
+
+        return redirect() -> route('book');
     }
 
     /**
