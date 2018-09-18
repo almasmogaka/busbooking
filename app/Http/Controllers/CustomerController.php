@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Customer;
 use App\Bus;
+use PDF;
 
 class CustomerController extends Controller
 {
@@ -15,7 +16,9 @@ class CustomerController extends Controller
      */
     public function index()
     {
-        //
+        $customers = Customer::orderBy('id', 'asc')->paginate(8);
+
+        return view('buses.customers')->withcustomers($customers);
     }
 
     /**
@@ -36,23 +39,7 @@ class CustomerController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, array(
-            'seat' => 'required',
-            'idno' => 'required',
-            'name' => 'required|max:8|min:8',
-            'phone'  => 'required',             
-        ));
-        //store in the database
-        $customer = new Customer;
-
-        $customer -> seat=$request->seat;
-        $customer -> idno=$request->idno;        
-        $customer -> name=$request->name;
-        $customer -> phone=$request->phone;        
-
-        $customer->save();
-
-        return redirect() -> route('book');
+        
     }
 
     /**
@@ -63,7 +50,11 @@ class CustomerController extends Controller
      */
     public function show($id)
     {
-        //
+        $cust = Customer::find($id);
+
+         $pdf = PDF::loadView('book.show',  compact('cust'));
+ 
+         return $pdf->stream('receipt.pdf');
     }
 
     /**
@@ -95,8 +86,10 @@ class CustomerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, Customer $customer)
     {
-        //
+        Customer::destroy($customer->id);   
+
+        return redirect() -> route('customer.index');
     }
 }

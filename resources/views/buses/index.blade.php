@@ -1,6 +1,7 @@
-@extends('welcome')
+@extends('admin')
 
 @section('content')
+<div class="container">
 @include('errors.feedback')
     <table class="table table-bordered table-hover" id="bus">
         <thead>
@@ -39,4 +40,8 @@
         </tbody>
 
     </table>
+    <div class="text-center">
+				{!! $buses->links(); !!}
+            </div>
+</div>
 @stop

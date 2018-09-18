@@ -15,7 +15,7 @@ class BusController extends Controller
      */
     public function index()
     {
-        $buses = Bus::all();
+        $buses = Bus::orderBy('id', 'asc')->paginate(8);
         return view('buses.index')->withbuses($buses);
     }
 

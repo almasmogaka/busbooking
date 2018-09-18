@@ -14,7 +14,7 @@ class HomeController extends Controller
 
     public function book() {        
 
-        $buses = Bus::all();
+        $buses = Bus::orderBy('depar', 'asc')->paginate(8);
         return view('book')->withbuses($buses);
     }
     //homepage
@@ -54,14 +54,20 @@ class HomeController extends Controller
 
         $customer->save();
 
-        return redirect() -> route('book.show, [$request->bus_id]');
+        return redirect() -> route('welcome');
+    }
+
+    public function welcome()
+    {
+        return view('book.welcome');
     }
 
     public function receipt($id)
     {
          $cust = Customer::find($id);
+         $buses = Bus::all();
 
-         $pdf = PDF::loadView('book.show',  compact('cust'));
+         $pdf = PDF::loadView('book.show',  compact('cust, buses'));
  
          return $pdf->stream('receipt.pdf');
          

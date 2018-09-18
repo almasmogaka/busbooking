@@ -13,7 +13,7 @@
                   <p class="card-title">Available Seats:{{$bus->seats}} <span class="fare">KShs.{{$bus->price}} </span> </p>
                   <p class="card-text" style="text-align:center">{{$bus->from}} <span>-{{$bus->to}} </span></p>
                   <p class="card-text" style="text-align:center">Departure Time :{{$bus->depar}} </p>
-                  <a href="{{ route('book.create') }}" class="btn btn-primary btn-sm" style="float:right">Book</a>
+                  <a href="{{ route('book.create', $bus->id) }}" class="btn btn-primary btn-sm" style="float:right">Book</a>
                 </div>
             </div>
           </div>    
@@ -21,5 +21,8 @@
       </div>
     </div>
   </div>
+  <div class="text-center">
+				{!! $buses->links(); !!}
+            </div>
 </div>
 @stop
