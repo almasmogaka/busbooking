@@ -17,6 +17,7 @@ Route::get('buses','HomeController@book')->name('book');
 Route::get('book/{id}','HomeController@create')->name('book.create');
 // Route::get('book/{id}','HomeController@create')->name('book.create');
 Route::post('book','HomeController@store')->name('book.store');
+Route::get('book','HomeController@receipt')->name('serial');
 
 Route::resource('bus', 'BusController');
 Route::resource('seat', 'SeatController');

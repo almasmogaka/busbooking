@@ -7,12 +7,12 @@
   <div class="card-body">
     <h1 class="card-title" style="text-align:center">Welcome</h1>
     <p class="card-text" style="font-size:28px;text-align:center">Thank you for using our online services.</p>
-    <div class="row" style="text-align:center: margin-top:40px;">
-        <div class="col-sm-2 offset-sm-2">
-        <a href="#" class="btn btn-secondary">Cancel</a>
+    <div class="row" style="text-align:center: margin-top:40px;">       
+        <div class="col-sm-12 " style="font-size:20px;">
+       <p style="color:blue; text-align:center">Produce you Name and Phone at the payments office.</p>
         </div>
-        <div class="col-sm-4 offset-sm-3" style="font-size:20px;">
-        Download Your <a href="#" class="card-link">Receipt</a></span>
+        <div class="col-sm-12 " style="font-size:20px;">
+       <p style="color:blue; text-align:center">Please Keep time</p>
         </div>
     </div>   
   </div>

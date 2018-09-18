@@ -10,7 +10,8 @@
             <th>NAME</th>
             <th>PHONE</th>
             <th>SERIAL</th>
-            <th></th>            
+            <th></th>  
+            <th></th>          
         </tr>
         </thead>
         <tbody>
@@ -19,7 +20,8 @@
                     <td>{{ $customer->bus_id }}</td>
                     <td>{{ $customer->name }}</td>
                     <td>{{ $customer->phone }}</td>
-                    <td>{{ $customer->serial }}</td>                                    
+                    <td>{{ $customer->serial }}</td>  
+                    <td><a href="{{ route('customer.show', $customer->id) }}" class="btn">Receipt</a></td>                                   
                     <td>
                     {!! Form::open(['route'=> ['customer.destroy', $customer->id], 'method' => 'DELETE']) !!}
                     {{ Form::button('DELETE', ['type' => 'submit', 'class' => 'btn btn-danger btn-sm', 'onclick'=>'return confirm("Are you sure you want to Delete?")'] )  }}
